@@ -201,13 +201,13 @@ function Files({ userId }: { userId: string }) {
 
   async function download(name: string) {
     const { data, error } = await supabase.storage.from("vault").createSignedUrl(`${userId}/${name}`, 60, { download: displayName(name) });
-    if (error) return toast.error("Erro ao baixar");
+    if (error) { toast.error("Erro ao baixar"); return; }
     window.location.href = data.signedUrl;
   }
 
   async function remove(name: string) {
     const { error } = await supabase.storage.from("vault").remove([`${userId}/${name}`]);
-    if (error) return toast.error("Erro ao excluir");
+    if (error) { toast.error("Erro ao excluir"); return; }
     qc.invalidateQueries({ queryKey: ["files", userId] });
   }
 
