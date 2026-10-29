@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Vault data (notes table, private "vault" storage bucket under <user_id>/ folder) is accessed from the browser client; RLS scopes everything to auth.uid() — keep it that way so users only see their own items.
